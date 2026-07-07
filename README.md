@@ -27,5 +27,6 @@ with macOS/iOS). Serve the directory with any static server; root-relative asset
 
 ## Design
 
-Spec and palette tokens: `docs/superpowers/specs/2026-07-07-seasonal-redesign-design.md`.
+Designed by [Claude](https://claude.com/claude-code) (Claude Fable 5), art-directed by Andrew
+Stanish. Spec and palette tokens: `docs/superpowers/specs/2026-07-07-seasonal-redesign-design.md`.
 Tasks tracked with [Beans](https://github.com/hmans/beans) in `.beans/`.
