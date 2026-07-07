@@ -47,12 +47,13 @@ Same roles, weathered: dusk navy `#101b26`→`#22303d`, slate sea `#37474f`, fad
 ## Layout (both themes)
 
 1. Striped scalloped awning (full-bleed header)
-2. Eyebrow: "Asbury Park, N.J. · Est. 1871 · On the Boardwalk"
-3. Cream painted-sign panel with double rule; deco sunburst fan rising behind it
-4. Marquee countdown (bulb rows top and bottom)
-5. One-line secondary date fact
-6. Full-width SVG boardwalk panorama (all illustration inline SVG, no image assets)
-7. Boardwalk-plank footer with dashed-border ticket stub
+2. Marquee countdown — the hero and the `h1` (bulb rows top and bottom)
+3. One-line secondary date fact
+4. Full-width SVG boardwalk panorama (all illustration inline SVG, no image assets)
+5. Boardwalk-plank footer with dashed-border ticket stub
+
+The painted-sign hero panel and sunburst were cut (review, 2026-07-07): the page must fit one
+viewport with the panorama visible. The marquee label carries the headline.
 
 ## Motion
 
