@@ -22,8 +22,7 @@ hardcoded. Preview either theme any day of the year with `?season=summer` or `?s
 - `js/countdown.js` — ticks the marquee clock and flips the theme live at season boundaries
 
 No build step, no dependencies, no web fonts (display face is Futura, released 1927 and shipped
-with macOS/iOS). Serve the directory with any static server; root-relative asset paths mean
-`file://` won't resolve them.
+with macOS/iOS). Open `index.html` directly or serve the directory with any static server.
 
 ## Design
 
