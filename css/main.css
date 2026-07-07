@@ -1,0 +1,342 @@
+/* Off-season (default) palette — the site spends most of the year here. */
+:root {
+    color-scheme: dark;
+    --sky: #22303d;
+    --sky-high: #101b26;
+    --sea: #37474f;
+    --foam: #7d8f96;
+    --sand: #6b5a40;
+    --cream: #d8d1bf;
+    --cabana: #7e4038;
+    --gold: #b3893d;
+    --bulb: #e8d39a;
+    --ink: #101b26;
+    --boards: #4c3b2a;
+    --boards-dark: #3a2d20;
+    --body-text: #e6e0d0;
+    --marquee-text: #e6e0d0;
+    --wheel-line: var(--foam);
+    --window-fill: #2b3840;
+    --awning-filter: saturate(.6) brightness(.75);
+    --marquee-border: 1px solid rgb(179 137 61 / .4);
+    --shadow-color: rgb(0 0 0 / .55);
+    --wave-far-duration: 10s;
+    --wave-near-duration: 6s;
+}
+
+/* Summer palette — Memorial Day through Labor Day. */
+:root[data-season="summer"] {
+    color-scheme: light;
+    --sky: #8fd0ce;
+    --sky-high: #b8e2df;
+    --sea: #2e8b84;
+    --foam: #d8efe9;
+    --sand: #efdcb0;
+    --cream: #faf3e0;
+    --cabana: #ce4a38;
+    --gold: #e8a93c;
+    --bulb: #fff3c4;
+    --ink: #16324a;
+    --boards: #b98a4e;
+    --boards-dark: #9a6f3c;
+    --body-text: #16324a;
+    --marquee-text: #faf3e0;
+    --wheel-line: var(--ink);
+    --window-fill: var(--sea);
+    --awning-filter: none;
+    --marquee-border: none;
+    --shadow-color: rgb(22 50 74 / .35);
+    --wave-far-duration: 14s;
+    --wave-near-duration: 9s;
+}
+
+/* ── season visibility ──────────────────────────────── */
+
+:root[data-season="summer"] .winter-only {
+    display: none;
+}
+
+:root:not([data-season="summer"]) .summer-only {
+    display: none;
+}
+
+/* ── base ───────────────────────────────────────────── */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Gradient lives on html (the canvas) so the z-index:-1 star layer can
+   paint above it; a background on body would cover the stars. */
+html {
+    background: linear-gradient(var(--sky-high), var(--sky) 70%) var(--sky-high);
+}
+
+body {
+    color: var(--body-text);
+    display: flex;
+    flex-direction: column;
+    font-family: Futura, "Century Gothic", "Josefin Sans", "Trebuchet MS", sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ── striped awning ─────────────────────────────────── */
+
+.awning {
+    background: repeating-linear-gradient(90deg,
+        var(--cabana) 0 56px, var(--cream) 56px 112px);
+    filter: var(--awning-filter);
+    height: 44px;
+    position: relative;
+}
+
+.awning::after {
+    background:
+        radial-gradient(circle 28px at 28px 0, var(--cabana) 27px, transparent 28px) 0 0 / 112px 28px repeat-x,
+        radial-gradient(circle 28px at 28px 0, var(--cream) 27px, transparent 28px) 56px 0 / 112px 28px repeat-x;
+    content: "";
+    height: 28px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+}
+
+/* ── night sky (off-season) ─────────────────────────── */
+
+.stars {
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+}
+
+.stars::before,
+.stars::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+}
+
+.stars::before {
+    animation: twinkle-star 3.2s ease-in-out infinite;
+    background-image:
+        radial-gradient(circle at center, rgb(230 224 208 / .95) 0 1.6px, transparent 2.6px),
+        radial-gradient(circle at center, rgb(230 224 208 / .6) 0 1.1px, transparent 2px);
+    background-position: 0 0, 45px 60px;
+    background-size: 210px 170px, 140px 120px;
+}
+
+.stars::after {
+    animation: twinkle-star 4.7s ease-in-out -2.2s infinite;
+    background-image:
+        radial-gradient(circle at center, rgb(230 224 208 / .8) 0 1.4px, transparent 2.4px),
+        radial-gradient(circle at center, rgb(230 224 208 / .5) 0 1px, transparent 1.8px);
+    background-position: 105px 30px, 20px 100px;
+    background-size: 190px 150px, 120px 140px;
+}
+
+@keyframes twinkle-star {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .25; }
+}
+
+/* ── marquee countdown ──────────────────────────────── */
+
+.marquee {
+    background: var(--ink);
+    border: var(--marquee-border);
+    border-radius: 10px;
+    box-shadow: 0 10px 26px var(--shadow-color);
+    color: var(--marquee-text);
+    margin: 64px auto 0;
+    max-width: 640px;
+    padding: 34px 28px 32px;
+    position: relative;
+    text-align: center;
+    width: calc(100% - 40px);
+}
+
+/* Bulb rows: off-season default has half the bulbs out and one strip
+   flickering; summer overrides below relight and twinkle them. */
+.marquee::before,
+.marquee::after {
+    background-image:
+        radial-gradient(circle at center, var(--bulb) 0 3.5px, rgb(232 211 154 / .3) 5px, transparent 6px),
+        radial-gradient(circle at center, rgb(232 211 154 / .18) 0 3.5px, transparent 4.5px);
+    background-position: 0 0, 28px 0;
+    background-size: 56px 14px, 56px 14px;
+    content: "";
+    height: 14px;
+    left: 16px;
+    position: absolute;
+    right: 16px;
+}
+
+.marquee::before {
+    animation: flicker 4.2s steps(1) infinite;
+    top: 9px;
+}
+
+.marquee::after {
+    bottom: 9px;
+}
+
+:root[data-season="summer"] .marquee::before,
+:root[data-season="summer"] .marquee::after {
+    animation: twinkle 1.6s steps(1) infinite;
+    background-image: radial-gradient(circle at center,
+        var(--bulb) 0 3.5px, rgb(255 243 196 / .35) 5px, transparent 6px);
+    background-position: 0 0;
+    background-size: 28px 14px;
+}
+
+:root[data-season="summer"] .marquee::after {
+    background-position: 14px 0;
+}
+
+@keyframes twinkle {
+    50% { opacity: .45; }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: .8; }
+    7% { opacity: .35; }
+    9% { opacity: .8; }
+    48% { opacity: .8; }
+    50% { opacity: .3; }
+    53% { opacity: .75; }
+    81% { opacity: .45; }
+    84% { opacity: .8; }
+}
+
+.marquee-label {
+    color: var(--gold);
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .3em;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+
+.clock {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.clock li {
+    padding: 0 18px;
+    text-transform: uppercase;
+}
+
+.clock span {
+    display: block;
+    font-size: clamp(2.4rem, 8vw, 3.4rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.clock small {
+    font-size: .72rem;
+    letter-spacing: .26em;
+}
+
+@media (max-width: 480px) {
+    .clock li {
+        flex-basis: 40%;
+        padding: 8px 0;
+    }
+}
+
+.also {
+    font-size: .85rem;
+    margin: 22px auto 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* ── boardwalk panorama ─────────────────────────────── */
+
+.panorama {
+    display: block;
+    margin-top: auto;
+    width: 100%;
+}
+
+.wheel-rotor {
+    animation: spin 48s linear infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* counter-rotate each seat about its own center so it orbits upright */
+.gondola {
+    animation: spin 48s linear infinite reverse;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* the off-season wheel stands still */
+:root:not([data-season="summer"]) .wheel-rotor,
+:root:not([data-season="summer"]) .gondola {
+    animation: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.waves-far {
+    animation: drift var(--wave-far-duration) linear infinite;
+}
+
+.waves-near {
+    animation: drift var(--wave-near-duration) linear infinite reverse;
+}
+
+@keyframes drift {
+    to { transform: translateX(-160px); }
+}
+
+/* ── ticket-stub footer ─────────────────────────────── */
+
+footer {
+    background: var(--boards);
+    border-top: 6px solid var(--boards-dark);
+    padding: 18px 20px 26px;
+    text-align: center;
+}
+
+.stub {
+    background: var(--cream);
+    border: 2px dashed var(--ink);
+    color: var(--ink);
+    display: inline-block;
+    font-size: .72rem;
+    letter-spacing: .28em;
+    margin: 0;
+    padding: 10px 26px;
+    text-transform: uppercase;
+}
+
+/* ── reduced motion ─────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee::before,
+    .marquee::after,
+    .stars::before,
+    .stars::after,
+    .wheel-rotor,
+    .gondola,
+    .waves-far,
+    .waves-near {
+        animation: none;
+    }
+}

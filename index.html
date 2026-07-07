@@ -5,93 +5,185 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="How long until Memorial Day?" name="description">
-    <meta content="#101e4a" name="theme-color">
+    <meta content="#101b26" name="theme-color">
+    <meta content="dark" name="color-scheme">
     <meta name="darkreader-lock">
     <meta content="Memorial Day Countdown" property="og:title">
     <meta content="https://www.memorialdaycountdown.com" property="og:url">
     <title>Memorial Day Countdown</title>
-    <link href="/css/normalize.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
     <link href="/favicon.ico" rel="icon" sizes="any">
-    <style>
-        html {
-            background-color: #101e4a;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-        }
-
-        h1 {
-            line-height: 1.2;
-            text-transform: uppercase;
-        }
-
-        #wrapper {
-            align-items: center;
-            color: #ffdd4a;
-            display: flex;
-            flex-direction: column;
-            font-size: 18px;
-            height: 100%;
-            line-height: 1.6;
-            margin: 40px auto;
-            max-width: 650px;
-            padding: 0 10px;
-            width: 100%;
-        }
-
-        ul {
-            margin-left: 0;
-            padding-left: 0;
-        }
-
-        li {
-            display: inline-block;
-            list-style-type: none;
-            padding: 1em;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        li span {
-            display: block;
-            font-size: 3rem;
-        }
-
-        li:first-child {
-            padding-left: 0;
-        }
-
-        @media (max-width: 560px) {
-            #wrapper {
-                min-width: 300px;
-                text-align: center;
-                width: 300px;
-            }
-
-            #countdown {
-                width: 240px;
-            }
-
-            #countdown li {
-                padding: 15px 0;
-                width: 48%;
-            }
-        }
-    </style>
+    <!-- blocking on purpose: sets the season theme before first paint -->
+    <script src="/js/season.js"></script>
 </head>
 
 <body>
 
-<div id="wrapper">
-    <h1>Memorial Day Countdown</h1>
-    <div id="countdown">
-        <ul>
-            <li><span id="days"></span>Days</li>
-            <li><span id="hours"></span>Hours</li>
-            <li><span id="minutes"></span>Minutes</li>
-            <li><span id="seconds"></span>Seconds</li>
-        </ul>
-    </div>
+<div class="awning" role="presentation"></div>
+<div class="stars winter-only" role="presentation"></div>
+
+<div class="marquee">
+    <h1 class="marquee-label">
+        <span class="summer-only">Season ends Labor Day &mdash; time remaining</span>
+        <span class="winter-only">The shore reopens Memorial Day</span>
+    </h1>
+    <ul class="clock">
+        <li><span id="days">&nbsp;</span><small>Days</small></li>
+        <li><span id="hours">&nbsp;</span><small>Hours</small></li>
+        <li><span id="minutes">&nbsp;</span><small>Min</small></li>
+        <li><span id="seconds">&nbsp;</span><small>Sec</small></li>
+    </ul>
 </div>
+
+<p class="also">
+    <span class="summer-only">Memorial Day returns <span class="next-memorial-day"></span>.</span>
+    <span class="winter-only">Memorial Day is <span class="next-memorial-day"></span> &mdash; hold onto your stub.</span>
+</p>
+
+<svg aria-label="Illustration of the Asbury Park boardwalk" class="panorama" preserveAspectRatio="xMidYMax meet" role="img" viewBox="0 0 1200 400">
+    <!-- summer sun -->
+    <g class="summer-only" fill="var(--gold)">
+        <circle cx="980" cy="74" r="34"/>
+        <g stroke="var(--gold)" stroke-width="5">
+            <line x1="980" x2="980" y1="18" y2="32"/>
+            <line x1="980" x2="980" y1="116" y2="130"/>
+            <line x1="924" x2="938" y1="74" y2="74"/>
+            <line x1="1022" x2="1036" y1="74" y2="74"/>
+            <line x1="941" x2="951" y1="35" y2="45"/>
+            <line x1="1009" x2="1019" y1="103" y2="113"/>
+            <line x1="1019" x2="1009" y1="35" y2="45"/>
+            <line x1="951" x2="941" y1="103" y2="113"/>
+        </g>
+    </g>
+    <!-- off-season crescent moon -->
+    <g class="winter-only">
+        <circle cx="980" cy="74" fill="var(--cream)" r="30"/>
+        <circle cx="992" cy="66" fill="var(--sky)" r="26"/>
+    </g>
+    <!-- gulls in the air -->
+    <g class="summer-only" fill="none" stroke="var(--ink)" stroke-linecap="round" stroke-width="3">
+        <path d="M700 90 q10 -12 20 0 q10 -12 20 0"/>
+        <path d="M780 60 q8 -10 16 0 q8 -10 16 0"/>
+        <path d="M850 110 q7 -9 14 0 q7 -9 14 0"/>
+    </g>
+    <!-- sea -->
+    <rect fill="var(--sea)" height="90" width="1200" y="228"/>
+    <g class="waves-far" fill="none" stroke="var(--foam)" stroke-width="3">
+        <path d="M-160 244 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+    </g>
+    <g class="waves-near" fill="none" stroke="var(--foam)" stroke-width="4">
+        <path d="M-160 282 q20 -12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/>
+    </g>
+    <!-- sand -->
+    <path d="M0 318 L1200 300 L1200 400 L0 400 Z" fill="var(--sand)"/>
+
+    <!-- ferris wheel -->
+    <g transform="translate(210 170)">
+        <path d="M0 0 L-64 186 M0 0 L64 186" stroke="var(--cabana)" stroke-width="8"/>
+        <g class="wheel-rotor">
+            <g fill="none" stroke="var(--wheel-line)" stroke-width="4">
+                <line x1="0" x2="0" y1="-112" y2="112"/>
+                <line x1="-112" x2="112" y1="0" y2="0"/>
+                <line x1="-79" x2="79" y1="-79" y2="79"/>
+                <line x1="-79" x2="79" y1="79" y2="-79"/>
+            </g>
+            <!-- gondolas ride the rotor, centered on their rim points -->
+            <g fill="var(--cabana)" stroke="var(--wheel-line)" stroke-width="2">
+                <rect class="gondola" height="14" rx="3" width="22" x="-11" y="105"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="-11" y="-119"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="101" y="-7"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="-123" y="-7"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="68" y="72"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="-90" y="72"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="68" y="-86"/>
+                <rect class="gondola" height="14" rx="3" width="22" x="-90" y="-86"/>
+            </g>
+        </g>
+        <circle fill="none" r="112" stroke="var(--wheel-line)" stroke-width="5"/>
+        <circle fill="var(--gold)" r="12" stroke="var(--wheel-line)" stroke-width="4"/>
+    </g>
+
+    <!-- beach-pass pavilion -->
+    <g>
+        <rect fill="var(--cream)" height="86" stroke="var(--ink)" stroke-width="3" width="220" x="470" y="270"/>
+        <path d="M458 270 L580 226 L702 270 Z" fill="var(--cabana)" stroke="var(--ink)" stroke-width="3"/>
+        <rect fill="var(--ink)" height="20" width="150" x="505" y="282"/>
+        <text fill="var(--cream)" font-family="Futura, sans-serif" font-size="12" letter-spacing="2" text-anchor="middle" x="580" y="296">BEACH PASSES</text>
+        <g fill="var(--window-fill)" stroke="var(--ink)" stroke-width="2">
+            <rect height="34" width="26" x="505" y="314"/>
+            <rect height="34" width="26" x="567" y="314"/>
+            <rect height="34" width="26" x="629" y="314"/>
+        </g>
+        <!-- off-season: boards over the windows, placard hung crooked -->
+        <g class="winter-only">
+            <g stroke="var(--boards)" stroke-width="6">
+                <line x1="503" x2="533" y1="316" y2="346"/>
+                <line x1="533" x2="503" y1="316" y2="346"/>
+                <line x1="565" x2="595" y1="316" y2="346"/>
+                <line x1="595" x2="565" y1="316" y2="346"/>
+                <line x1="627" x2="657" y1="316" y2="346"/>
+                <line x1="657" x2="627" y1="316" y2="346"/>
+            </g>
+            <g transform="rotate(-4 580 262)">
+                <rect fill="var(--cream)" height="24" stroke="var(--ink)" stroke-width="2" width="210" x="475" y="250"/>
+                <text fill="var(--cabana)" font-family="Futura, sans-serif" font-size="12" font-weight="bold" letter-spacing="1.5" text-anchor="middle" x="580" y="266">CLOSED FOR THE SEASON</text>
+            </g>
+        </g>
+        <!-- flagpole; the flag only flies in summer -->
+        <line stroke="var(--ink)" stroke-width="3" x1="580" x2="580" y1="226" y2="196"/>
+        <path class="summer-only" d="M580 196 L612 204 L580 212 Z" fill="var(--gold)"/>
+    </g>
+
+    <!-- summer: umbrellas and a towel on the sand -->
+    <g class="summer-only">
+        <g transform="translate(830 330) rotate(-8)">
+            <clipPath id="canopy-a"><path d="M-52 -48 A52 52 0 0 1 52 -48 Z"/></clipPath>
+            <line stroke="var(--ink)" stroke-width="4" x1="0" x2="0" y1="0" y2="-58"/>
+            <path d="M-52 -48 A52 52 0 0 1 52 -48 Z" fill="var(--cabana)"/>
+            <g clip-path="url(#canopy-a)" fill="var(--cream)">
+                <rect height="60" width="16" x="-36" y="-104"/>
+                <rect height="60" width="16" x="20" y="-104"/>
+            </g>
+        </g>
+        <g transform="translate(950 348) rotate(10)">
+            <clipPath id="canopy-b"><path d="M-46 -42 A46 46 0 0 1 46 -42 Z"/></clipPath>
+            <line stroke="var(--ink)" stroke-width="4" x1="0" x2="0" y1="0" y2="-52"/>
+            <path d="M-46 -42 A46 46 0 0 1 46 -42 Z" fill="var(--sea)"/>
+            <g clip-path="url(#canopy-b)" fill="var(--cream)">
+                <rect height="55" width="14" x="-31" y="-92"/>
+                <rect height="55" width="14" x="17" y="-92"/>
+            </g>
+        </g>
+        <rect fill="var(--cabana)" height="10" rx="3" transform="rotate(-4 1060 368)" width="54" x="1033" y="363"/>
+    </g>
+
+    <!-- off-season: furled umbrellas, railing, gulls hunched against the wind -->
+    <g class="winter-only">
+        <g stroke="var(--ink)" stroke-width="2">
+            <path d="M726 356 L734 300 L742 356 Z" fill="var(--cabana)" transform="rotate(8 734 328)"/>
+            <path d="M748 358 L756 306 L764 358 Z" fill="var(--sea)" transform="rotate(12 756 332)"/>
+        </g>
+        <g stroke="var(--boards-dark)" stroke-width="5">
+            <line x1="820" x2="1200" y1="330" y2="326"/>
+            <line x1="850" x2="850" y1="330" y2="372"/>
+            <line x1="960" x2="960" y1="329" y2="374"/>
+            <line x1="1070" x2="1070" y1="328" y2="376"/>
+            <line x1="1180" x2="1180" y1="327" y2="378"/>
+        </g>
+        <g fill="var(--cream)" stroke="var(--ink)" stroke-width="1.5">
+            <path d="M900 328 q-4 -16 8 -18 q14 -2 12 10 q-1 8 -20 8 Z"/>
+            <path d="M1020 326 q-4 -16 8 -18 q14 -2 12 10 q-1 8 -20 8 Z"/>
+            <path d="M1130 325 q-4 -16 8 -18 q14 -2 12 10 q-1 8 -20 8 Z"/>
+        </g>
+    </g>
+</svg>
+
+<footer>
+    <p class="stub">
+        <span class="summer-only">Admit One &middot; Good for One Season &middot; Rain or Shine</span>
+        <span class="winter-only">Rain Check &middot; Valid Memorial Day Weekend &middot; No Refunds</span>
+    </p>
+</footer>
 
 <script src="/js/countdown.js"></script>
 
