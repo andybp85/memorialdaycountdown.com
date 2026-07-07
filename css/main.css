@@ -72,14 +72,20 @@ html {
     background: linear-gradient(var(--sky-high), var(--sky) 70%) var(--sky-high);
 }
 
+/* Locked to the viewport: the panorama flexes, everything else keeps its size. */
 body {
     color: var(--body-text);
     display: flex;
     flex-direction: column;
     font-family: Futura, "Century Gothic", "Josefin Sans", "Trebuchet MS", sans-serif;
+    height: 100vh;
+    height: 100svh;
     margin: 0;
-    min-height: 100vh;
     position: relative;
+}
+
+body > * {
+    flex-shrink: 0;
 }
 
 /* ── striped awning ─────────────────────────────────── */
@@ -151,7 +157,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 10px 26px var(--shadow-color);
     color: var(--marquee-text);
-    margin: 64px auto 0;
+    margin: clamp(24px, 6vh, 64px) auto 0;
     max-width: 640px;
     padding: 34px 28px 32px;
     position: relative;
@@ -264,9 +270,12 @@ body {
 
 /* ── boardwalk panorama ─────────────────────────────── */
 
+/* Fills whatever height is left; js/countdown.js picks slice vs meet so the
+   scene stays full-bleed and bottom-anchored at any aspect ratio. */
 .panorama {
     display: block;
-    margin-top: auto;
+    flex: 1;
+    min-height: 96px;
     width: 100%;
 }
 

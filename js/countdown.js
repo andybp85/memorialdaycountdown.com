@@ -43,4 +43,22 @@
 
     render();
     setInterval(render, MS_PER_SECOND);
+
+    // The panorama flexes to fill the space left over by the fixed-height
+    // content. When its box is wider than the drawing's 3:1 aspect, slice
+    // (full-bleed, crops sky); when narrower, meet (full width, sky gap).
+    // Either way it stays bottom-anchored and never leaves side gaps.
+    const panorama = document.querySelector(".panorama");
+    const PANORAMA_ASPECT = 3;
+
+    const fitPanorama = () => {
+        const box = panorama.getBoundingClientRect();
+        if (box.height > 0) {
+            panorama.setAttribute("preserveAspectRatio",
+                box.width / box.height > PANORAMA_ASPECT ? "xMidYMax slice" : "xMidYMax meet");
+        }
+    };
+
+    fitPanorama();
+    window.addEventListener("resize", fitPanorama);
 }());
