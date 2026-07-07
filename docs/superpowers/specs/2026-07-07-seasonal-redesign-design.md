@@ -5,14 +5,15 @@ Boardwalk Empire. Status: proposed; mockups delivered for review.
 
 ## Concept: same boardwalk, two seasons
 
-One illustrated Asbury Park boardwalk panorama — Ferris wheel, salt-water-baths pavilion,
-umbrellas, the Atlantic — rendered twice:
+One illustrated Asbury Park boardwalk panorama — Ferris wheel, beach-pass pavilion, umbrellas,
+the Atlantic — rendered twice:
 
 - **Summer** (Memorial Day through Labor Day): daylight, turning Ferris wheel, striped umbrellas,
   gulls in the air, marquee bulbs lit and twinkling. Counts down to Labor Day ("season ends").
-- **Off-season** (rest of the year): dusk, still wheel, boarded-up pavilion with a crooked
-  "Closed for the Season" placard, furled umbrellas, gulls hunched on the railing, drifting snow,
-  half the marquee bulbs out and one strip flickering. Counts down to Memorial Day.
+- **Off-season** (rest of the year): night, still wheel, boarded-up pavilion with a crooked
+  "Closed for the Season" placard, furled umbrellas, gulls hunched on the railing, twinkling
+  stars behind the scene, half the marquee bulbs out and one strip flickering. Counts down to
+  Memorial Day.
 
 Signature element: the countdown itself is a bulb-studded boardwalk marquee. Its state of repair
 tells the season's story.
@@ -55,9 +56,10 @@ Same roles, weathered: dusk navy `#101b26`→`#22303d`, slate sea `#37474f`, fad
 
 ## Motion
 
-Summer: Ferris wheel rotates (48s), waves drift, bulbs twinkle. Off-season: snow falls, waves
-drift faster (winter chop), one bulb strip flickers irregularly; the wheel is still — its
-stillness is the point. All animation disabled under `prefers-reduced-motion`.
+Summer: Ferris wheel rotates (48s), waves drift, bulbs twinkle. Off-season: stars twinkle in
+two offset phases behind the content, waves drift faster (winter chop), one bulb strip flickers
+irregularly; the wheel is still — its stillness is the point. All animation disabled under
+`prefers-reduced-motion`.
 
 ## Behavior
 
@@ -67,8 +69,7 @@ stillness is the point. All animation disabled under `prefers-reduced-motion`.
   Single page; CSS custom properties swapped via a `data-season` attribute on `<html>`; the two
   panorama variants toggled the same way.
 - Summer counts down to Labor Day with a "Memorial Day returns <date>" footnote; off-season
-  counts down to Memorial Day. (Open question for review: keep the summer page counting to
-  Labor Day, or always count to Memorial Day?)
+  counts down to Memorial Day. (Approved 2026-07-07.)
 - No dependencies, no build step, no web-font downloads. System Futura carries the period look.
 
 ## Accessibility and quality floor
