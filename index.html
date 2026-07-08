@@ -87,26 +87,24 @@
     <g transform="translate(210 170)">
         <path d="M0 0 L-64 186 M0 0 L64 186" stroke="var(--cabana)" stroke-width="8"/>
         <g class="wheel-rotor">
-            <!-- invisible symmetric anchor: pins this group's bounding box so the
-                 CSS spin's fill-box transform-origin can't drift off the hub as the
-                 gondola children counter-rotate (Firefox recomputes it each frame) -->
-            <circle fill="none" r="130" stroke="none"/>
             <g fill="none" stroke="var(--wheel-line)" stroke-width="4">
                 <line x1="0" x2="0" y1="-112" y2="112"/>
                 <line x1="-112" x2="112" y1="0" y2="0"/>
                 <line x1="-79" x2="79" y1="-79" y2="79"/>
                 <line x1="-79" x2="79" y1="79" y2="-79"/>
             </g>
-            <!-- gondolas ride the rotor, centered on their rim points -->
+            <!-- each translate wrapper puts the seat's local (0,0) at its rim point
+                 so the counter-spin turns about a static origin — Firefox recomputes
+                 fill-box origins per animation frame, which drifts (see main.css) -->
             <g fill="var(--cabana)" stroke="var(--wheel-line)" stroke-width="2">
-                <rect class="gondola" height="14" rx="3" width="22" x="-11" y="105"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="-11" y="-119"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="101" y="-7"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="-123" y="-7"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="68" y="72"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="-90" y="72"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="68" y="-86"/>
-                <rect class="gondola" height="14" rx="3" width="22" x="-90" y="-86"/>
+                <g transform="translate(0 112)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(0 -112)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(112 0)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(-112 0)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(79 79)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(-79 79)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(79 -79)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
+                <g transform="translate(-79 -79)"><rect class="gondola" height="14" rx="3" width="22" x="-11" y="-7"/></g>
             </g>
         </g>
         <circle fill="none" r="112" stroke="var(--wheel-line)" stroke-width="5"/>

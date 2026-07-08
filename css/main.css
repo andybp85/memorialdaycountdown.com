@@ -285,17 +285,18 @@ body > * {
     transform: translateX(-320px);
 }
 
+/* the rotor and each seat spin about their local user-space origin (the SVG
+   default): translate wrappers in the markup put that origin on the hub and
+   rim points. Never fill-box here — Firefox recomputes fill-box origins per
+   animation frame, and the counter-rotating seats perturb the boxes, so the
+   pivots drift off center over time. */
 .wheel-rotor {
     animation: spin 48s linear infinite;
-    transform-box: fill-box;
-    transform-origin: center;
 }
 
-/* counter-rotate each seat about its own center so it orbits upright */
+/* counter-rotate each seat so it orbits upright */
 .gondola {
     animation: spin 48s linear infinite reverse;
-    transform-box: fill-box;
-    transform-origin: center;
 }
 
 /* the off-season wheel stands still */
