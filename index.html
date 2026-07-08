@@ -87,6 +87,10 @@
     <g transform="translate(210 170)">
         <path d="M0 0 L-64 186 M0 0 L64 186" stroke="var(--cabana)" stroke-width="8"/>
         <g class="wheel-rotor">
+            <!-- invisible symmetric anchor: pins this group's bounding box so the
+                 CSS spin's fill-box transform-origin can't drift off the hub as the
+                 gondola children counter-rotate (Firefox recomputes it each frame) -->
+            <circle fill="none" r="130" stroke="none"/>
             <g fill="none" stroke="var(--wheel-line)" stroke-width="4">
                 <line x1="0" x2="0" y1="-112" y2="112"/>
                 <line x1="-112" x2="112" y1="0" y2="0"/>
