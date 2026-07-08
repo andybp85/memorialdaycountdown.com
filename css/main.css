@@ -279,6 +279,12 @@ body > * {
     width: 100%;
 }
 
+/* Portrait crop shows only the middle of the drawing; pull the sun/moon
+   in from the right edge so they stay in frame. */
+.panorama.cropped .sky-badge {
+    transform: translateX(-320px);
+}
+
 .wheel-rotor {
     animation: spin 48s linear infinite;
     transform-box: fill-box;

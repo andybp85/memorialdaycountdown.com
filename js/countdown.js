@@ -45,18 +45,24 @@
     setInterval(render, MS_PER_SECOND);
 
     // The panorama flexes to fill the space left over by the fixed-height
-    // content. When its box is wider than the drawing's 3:1 aspect, slice
-    // (full-bleed, crops sky); when narrower, meet (full width, sky gap).
-    // Either way it stays bottom-anchored and never leaves side gaps.
+    // content. Fit by the box's aspect ratio vs the drawing's 3:1:
+    //   > 3:1  — slice: full-bleed, crops sky from the top
+    //   1.65–3 — meet: full width, a modest sky gap above the scene
+    //   < 1.65 — slice: portrait; fill the space by cropping the sides
+    //            (.cropped shifts the sun/moon inward so they stay visible)
+    // Always bottom-anchored, never side gaps, never a giant void.
     const panorama = document.querySelector(".panorama");
-    const PANORAMA_ASPECT = 3;
 
     const fitPanorama = () => {
         const box = panorama.getBoundingClientRect();
-        if (box.height > 0) {
-            panorama.setAttribute("preserveAspectRatio",
-                box.width / box.height > PANORAMA_ASPECT ? "xMidYMax slice" : "xMidYMax meet");
+        if (box.height === 0) {
+            return;
         }
+        const aspect = box.width / box.height;
+        const cropped = aspect < 1.65;
+        panorama.setAttribute("preserveAspectRatio",
+            cropped || aspect > 3 ? "xMidYMax slice" : "xMidYMax meet");
+        panorama.classList.toggle("cropped", cropped);
     };
 
     fitPanorama();
