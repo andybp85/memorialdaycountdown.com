@@ -1,0 +1,31 @@
+{
+    "name": "memorialdaycountdown.com",
+    "version": "1.0.0",
+    "description": "It's the day after Labor Day in New Jersey and this is catharsis.",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "oxlint",
+        "format": "oxfmt",
+        "format:check": "oxfmt --check"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andybp85/memorialdaycountdown.com.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/andybp85/memorialdaycountdown.com/issues"
+    },
+    "homepage": "https://github.com/andybp85/memorialdaycountdown.com#readme",
+    "devDependencies": {
+        "oxfmt": "0.63.0",
+        "oxlint": "1.78.0"
+    }
+}
