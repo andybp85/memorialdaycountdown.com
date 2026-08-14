@@ -58,6 +58,8 @@
         panorama.classList.toggle('cropped', cropped)
     }
 
-    fitPanorama()
-    window.addEventListener('resize', fitPanorama)
+    // Observe the box rather than the window: the panorama also resizes when the
+    // marquee above it reflows (a late-loading font, a wrapped label), which fires
+    // no resize event. Observing runs the callback once, so no separate first call.
+    new ResizeObserver(fitPanorama).observe(panorama)
 })()

@@ -3,7 +3,7 @@
 It's the day after Labor Day in New Jersey and this is catharsis.
 
 A static one-page countdown styled after the 1920s Asbury Park boardwalk, live at
-[memorialdaycountdown.com](https://www.memorialdaycountdown.com). The page dresses itself for
+[memorialdaycountdown.com](https://memorialdaycountdown.com). The page dresses itself for
 the season:
 
 - **Summer** (Memorial Day through Labor Day): beach day — turning Ferris wheel, striped
