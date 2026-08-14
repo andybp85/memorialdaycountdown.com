@@ -21,8 +21,9 @@ hardcoded. Preview either theme any day of the year with `?season=summer` or `?s
 - `js/season.js` — season logic; runs blocking in `<head>` so the right theme paints first
 - `js/countdown.js` — ticks the marquee clock and flips the theme live at season boundaries
 
-No build step, no dependencies, no web fonts (display face is Futura, released 1927 and shipped
-with macOS/iOS). Open `index.html` directly or serve the directory with any static server.
+No build step, no web fonts (display face is Futura, released 1927 and shipped with macOS/iOS),
+and no runtime dependency but a [Clicky](https://clicky.com/101510298) analytics tag in the
+footer. Open `index.html` directly or serve the directory with any static server.
 
 ## Design
 

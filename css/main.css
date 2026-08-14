@@ -378,22 +378,48 @@ main {
 /* ── ticket-stub footer ─────────────────────────────── */
 
 footer {
+    align-items: center;
     background: var(--boards);
     border-top: 6px solid var(--boards-dark);
+    display: grid;
     flex-shrink: 0;
+    /* Mirrored gutters, so the stub centres on the footer rather than on the
+       space the badge leaves over. The badge rides the right gutter, and the
+       matching floor on the left one keeps the pair symmetric once space runs
+       short — otherwise the badge's own width shoves the stub off centre. */
+    grid-template-columns: minmax(80px, 1fr) auto minmax(80px, 1fr);
     padding: 18px 20px 26px;
+    row-gap: 16px;
     text-align: center;
 
     & .stub {
         background: var(--cream);
         border: 2px dashed var(--ink);
         color: var(--ink);
-        display: inline-block;
         font-size: 0.72rem;
+        grid-column: 2;
         letter-spacing: 0.28em;
         margin: 0;
         padding: 10px 26px;
         text-transform: uppercase;
+    }
+
+    & .analytics {
+        grid-column: 3;
+        justify-self: end;
+        line-height: 0;
+    }
+
+    /* Roughly where the stub stops fitting on one line beside the badge, so the
+       badge drops to its own row underneath rather than squeezing it. */
+    @media (max-width: 750px) {
+        grid-template-columns: 1fr;
+
+        & .stub,
+        & .analytics {
+            grid-column: 1;
+            justify-self: center;
+        }
     }
 }
 
