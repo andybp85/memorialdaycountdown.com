@@ -1,11 +1,11 @@
 ---
 # memorialdaycountdown.com-f6a3
 title: Apply modern-web-guidance findings
-status: in-progress
+status: completed
 type: task
 priority: normal
 created_at: 2026-08-14T08:10:32Z
-updated_at: 2026-08-14T08:13:32Z
+updated_at: 2026-08-14T08:16:51Z
 ---
 
 Act on the modern-web-guidance evaluation from memorialdaycountdown.com-ia42.
@@ -18,7 +18,7 @@ Act on the modern-web-guidance evaluation from memorialdaycountdown.com-ia42.
 - [x] Swap the resize listener for a ResizeObserver on .panorama
 - [x] Use the individual transform property for the cropped sky badge
 - [x] Convert main.css to native nesting
-- [ ] Verify: lint, format:check, vnu, and a browser pass in both seasons
+- [x] Verify: lint, format:check, vnu, and a browser pass in both seasons
 
 ## Verification status
 
